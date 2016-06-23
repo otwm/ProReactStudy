@@ -1,0 +1,24 @@
+{
+  "name": "chapter01",
+  "version": "1.0.0",
+  "description": "* 환경 설정 * npm 기본 개념과 기본 명령어들 정리 * react 시작하기",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kdo",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.1.0"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "react-dom": "^15.1.0",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
