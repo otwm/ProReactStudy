@@ -97,3 +97,7 @@ render(){
 
 
 ##정리
+
+
+## 기타
+[js oop](https://github.com/dotNetTree/I-Konow-JS/blob/master/oop-in-js/01_java_to_js.md)
