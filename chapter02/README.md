@@ -106,26 +106,62 @@ R.p({},
 [리액트를 이해하다 7편](http://blog.coderifleman.com/post/123886912084/reactjs%EB%A5%BC-%EC%9D%B4%ED%95%B4%ED%95%98%EB%8B%A47)
 
 ### 폼 처리
-#### 제어 컴포넌트
-상태 제어되는 컴퍼넌트
+#### 제어 컴포넌트(Controlled Component)
+Controlled Component는 State에 따라 값을 관리하는 Componenet 입니다. 이를 이용해 텍스트 필드를 재작성합니다.
+
 예제
 ##### 특수사례
 * TextArea : 일관성을 위해 value 속성을 사용.(html과 다름)
 * Select : 역시 value 속성 사용 가능하다.
 
-#### 비제어 컴포넌트
-상태 **안** 제어되는 컴퍼넌트
+#### 비제어 컴포넌트(UnControlled Component)
+UnControlled Componenent는 반대로 값을 관리하지 않는 컴포넌트로 초기값을 설정한 값은 defaultValue로 지정합니다. 이 경우는 앞 절에서처럼 onChange()에서 항상 값을 state에 반영해도 되고, 반영하고 싶을 때만 DOM에서 value를 취득하여 갱신하는 것도 가능합니다.
+
 예제
 
-### 가상 DOM의 작동 방식
+````javascript
+var LiveText = React.createClass({
+  getInitialState() {
+    return {
+      textValue: "initial value"
+    };
+  },
+  changeText(e) {
+    this.setState({textValue: this.refs.inputText.getDOMNode().value });
+  },
+  render() {
+    return (
+      <div>
+        <p>{this.state.textValue}</p>
+        <input type="text" ref="inputText" defalutValue="initial value" />
+        <button onClick={this.changeText}>change</button>
+      </div>
+    );
+  }
+});
+````
 
+### 가상 DOM의 작동 방식
+* [react 공식 사이트 virtual dom](https://facebook.github.io/react/docs/glossary.html)
+* [virtual dom과 dom의 차이](http://reactkungfu.com/2015/10/the-difference-between-virtual-dom-and-dom/)
+* [state of virtual dom](https://blog.jscrambler.com/state-virtual-dom/)
+* [Learning Virtual DOM and React Diff Algorithm](http://www.oyecode.com/2015/09/reactjs-learning-virtual-dom-and-react.html)
+* [virtual dom의 좋은 점](http://blog.coderifleman.com/post/122771353444/reactjs%EB%A5%BC-%EC%9D%B4%ED%95%B4%ED%95%98%EB%8B%A44)
+
+### 키
+virtual dom에서 반복되는 요소들을 다룰 시 성능을 높이기 위해 key 속성을 이용하는 것이 좋다.
+
+### ref
+컴퍼넌트 내부에 하위 노드나 컴퍼넌트에 접근하고 싶을 때 사용할 수 있다.
+그러나 대부분의 경우 실제 DOM을 조작하는 것보다 리액트 모델 안에서 더 깔끔하게 코드를 구성할
+수 있는 방법이 있따!!!
+
+예제
 ##칸반 앱: 카드가 열려있는지 여부 확인
 실습
 
-
-
-
 ##정리
+
 
 
 ## 기타
