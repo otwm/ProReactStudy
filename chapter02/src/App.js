@@ -1,21 +1,19 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 
-let {
-    form,
-    input
-} = React.DOM;
-
-class Hello extends Component {
+class Greeting extends Component {
     render() {
-        return (
-            form({className: "commentForm"},
-                input({type: "text", placeholder: "Name"}),
-                input({type: "text", placeholder: "Comment"}),
-                input({type: "submit", placeholder: "Post"})
-            )
-        );
+        return (<span>hi</span>);
     }
 }
 
-render(<Hello/>, document.getElementById('root'));
+var dom = React.DOM;
+var greeting = React.createFactory(Greeting);
+
+
+render(
+    dom.div({id: "greeting-container", className: "container"},
+        greeting({name: "World"})
+    ),
+    document.getElementById('root')
+);

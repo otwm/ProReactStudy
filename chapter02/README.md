@@ -84,9 +84,26 @@ render(){
 ###JSX를 배제하고 리액트 이용
 그래도 된다.(왜?? 뭣하러??)
 
+```javascript
+R.p({},
+  'The live example is the same. The only difference is that we render to ',
+  R.code({},
+    'mountNode'
+  ),
+  ', ' +
+  'which is just the DOM node for the example.'
+)
+```  
+왜 JSX를 써야하는 가를 보여주는 코드??
+
+
 ### 요소 팩토리
 예제
+
 ### 인라인 스타일링
+예제
+참조)
+[리액트를 이해하다 7편](http://blog.coderifleman.com/post/123886912084/reactjs%EB%A5%BC-%EC%9D%B4%ED%95%B4%ED%95%98%EB%8B%A47)
 
 ### 가상 DOM의 작동 방식
 
@@ -100,4 +117,6 @@ render(){
 
 
 ## 기타
+**[zapier react tutorial](https://zapier.com/engineering/react-js-tutorial-guide-gotchas/)**
 [js oop](https://github.com/dotNetTree/I-Konow-JS/blob/master/oop-in-js/01_java_to_js.md)
+[virtual dom에 대한 이해](https://gist.github.com/sebmarkbage/fcb1b6ab493b0c77d589#file-react-terminology-md)
