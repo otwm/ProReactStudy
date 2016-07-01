@@ -46,3 +46,31 @@ class Container extends Component {
 render(
     <Container/>, document.getElementById('second')
 );
+
+/**
+ * 폼 요소
+ */
+
+class Search extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            searchTerm: "React"
+        };
+    }
+
+    handleChange(event) {
+        this.setState({searchTerm: event.target.value});
+    }
+
+    render() {
+        return (
+            <div>
+                SearchTerm :
+                <input type="search" value={this.state.searchTerm}
+                       onChange={this.handleChange.bind(this)}/>
+            </div>
+        );
+    }
+}

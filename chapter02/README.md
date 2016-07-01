@@ -93,7 +93,7 @@ R.p({},
   ', ' +
   'which is just the DOM node for the example.'
 )
-```  
+```
 왜 JSX를 써야하는 가를 보여주는 코드??
 
 
@@ -104,6 +104,18 @@ R.p({},
 예제
 참조)
 [리액트를 이해하다 7편](http://blog.coderifleman.com/post/123886912084/reactjs%EB%A5%BC-%EC%9D%B4%ED%95%B4%ED%95%98%EB%8B%A47)
+
+### 폼 처리
+#### 제어 컴포넌트
+상태 제어되는 컴퍼넌트
+예제
+##### 특수사례
+* TextArea : 일관성을 위해 value 속성을 사용.(html과 다름)
+* Select : 역시 value 속성 사용 가능하다.
+
+#### 비제어 컴포넌트
+상태 **안** 제어되는 컴퍼넌트
+예제
 
 ### 가상 DOM의 작동 방식
 
@@ -120,3 +132,6 @@ R.p({},
 **[zapier react tutorial](https://zapier.com/engineering/react-js-tutorial-guide-gotchas/)**
 [js oop](https://github.com/dotNetTree/I-Konow-JS/blob/master/oop-in-js/01_java_to_js.md)
 [virtual dom에 대한 이해](https://gist.github.com/sebmarkbage/fcb1b6ab493b0c77d589#file-react-terminology-md)
+
+## 남은 과제들
+* [es6, react.Component]구체적으로 생성자 안에 super 하는 일은 무엇인가?
