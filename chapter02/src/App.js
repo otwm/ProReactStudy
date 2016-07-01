@@ -48,7 +48,7 @@ render(
 );
 
 /**
- * 폼 요소
+ *  폼 제어 컴포넌트
  */
 
 class Search extends Component {
@@ -62,6 +62,7 @@ class Search extends Component {
 
     handleChange(event) {
         this.setState({searchTerm: event.target.value});
+        if (console)console.log(this.state.searchTerm);
     }
 
     render() {
@@ -74,3 +75,42 @@ class Search extends Component {
         );
     }
 }
+
+render(
+    <Search/>, document.getElementById('third')
+);
+
+/**
+ *  폼 비제어 컴포넌트
+ */
+
+class NotControlledSearch extends Component {
+
+    constructor() {
+        super();
+    }
+
+    handleSubmit(event) {
+        console.log(event.target.name.value);
+        console.log(event.target.email.value);
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <div className="formGroup">
+                    Name : <input name="name" type="text"/>
+                </div>
+                <div className="formGroup">
+                    E-mail : <input name="email" type="email"/>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        );
+    }
+}
+
+render(
+    <NotControlledSearch/>, document.getElementById('forth')
+);
