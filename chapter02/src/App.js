@@ -1,16 +1,21 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
+
+let {
+    form,
+    input
+} = React.DOM;
 
 class Hello extends Component {
     render() {
         return (
-            React.DOM.form({className: "commentForm"},
-                React.DOM.input({type: "text", placeholder: "Name"}),
-                React.DOM.input({type: "text", placeholder: "Comment"}),
-                React.DOM.input({type: "submit", placeholder: "Post"})
+            form({className: "commentForm"},
+                input({type: "text", placeholder: "Name"}),
+                input({type: "text", placeholder: "Comment"}),
+                input({type: "submit", placeholder: "Post"})
             )
         );
     }
 }
 
-ReactDOM.render(<Hello/>, document.getElementById('root'));
+render(<Hello/>, document.getElementById('root'));
