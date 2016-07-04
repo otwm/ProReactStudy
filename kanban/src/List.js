@@ -8,7 +8,7 @@ class List extends Component {
             return <Card
                 id={card.id}
                 title={card.title}
-                descriptiion={card.descriptiion}
+                description={card.description}
                 tasks={card.tasks}
             />
         });
