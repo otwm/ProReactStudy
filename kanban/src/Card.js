@@ -3,6 +3,7 @@ import CheckList from './CheckList'
 
 class Card extends Component {
     constructor() {
+        console.log(arguments);
         super(...arguments);
         this.state = {
             showDetails: false

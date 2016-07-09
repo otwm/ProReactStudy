@@ -9,13 +9,22 @@ module.exports = {
         path:__dirname,
         filename:"bundle.js"
     },
-    module:{
-        loaders:[{
-            test: /\.jsx?$/,
-            loader:'babel',
-            query: {
-                presets: ['es2015', 'react']
+    // module:{
+    //     loaders:[{
+    //         test: /\.jsx?$/,
+    //         loader:'babel',
+    //         query: {
+    //             presets: ['es2015', 'react']
+    //         }
+    //     }]
+    // }
+    module: {
+        loaders: [
+            {
+                loader: "babel-loader",
+                include: [path.resolve(__dirname, "src")]
             }
-        }]
-    }
+        ]
+    },
+    devtool: '#inline-source-map'
 }
