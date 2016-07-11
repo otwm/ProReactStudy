@@ -16,6 +16,7 @@ module.exports = {
             compressor: {
                 warnings: false,
             },
-        })
+        }),
+        new webpack.optimize.OccurenceOrderPlugin()
     ]
 };
