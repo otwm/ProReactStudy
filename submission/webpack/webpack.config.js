@@ -18,5 +18,13 @@ module.exports = {
             },
         }),
         new webpack.optimize.OccurenceOrderPlugin()
-    ]
+    ],
+    module: {
+        loaders: [{
+            test: /\.css$/,
+            loaders: ['style', 'css']
+        }]
+    }
+
+
 };
