@@ -3,7 +3,6 @@ import CheckList from './CheckList'
 
 class Card extends Component {
     constructor() {
-        console.log(arguments);
         super(...arguments);
         this.state = {
             showDetails: false
@@ -20,11 +19,29 @@ class Card extends Component {
                 </div>
             );
         }
+
+        let sideColor = {
+            position: 'absolute',
+            zIndex: -1,
+            top: 0,
+            bottom: 0,
+            left: 0,
+            width: 7,
+            backgroundColor: this.props.color
+        };
+
         return (
             <div className="card">
-                <div className="card__title" onClick={
-                    ()=>this.setState({showDetails:!this.state.showDetails})
-                }>{this.props.title}</div>
+                <div style={sideColor}/>
+                <div
+                    className={
+                        this.state.showDetails ? "card__title card__title--is-open"
+                            : "card__title"
+                    }
+                    onClick={
+                        ()=>this.setState({showDetails: !this.state.showDetails})
+                    }
+                >{this.props.title}</div>
                 {cardDetails}
             </div>
         )
