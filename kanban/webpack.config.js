@@ -2,12 +2,12 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry:[
+    entry: [
         './src/App.js'
     ],
-    output:{
-        path:__dirname,
-        filename:"bundle.js"
+    output: {
+        path: __dirname,
+        filename: "bundle.js"
     },
     // module:{
     //     loaders:[{
@@ -22,7 +22,9 @@ module.exports = {
         loaders: [
             {
                 loader: "babel-loader",
-                include: [path.resolve(__dirname, "src")]
+                include: [
+                    path.resolve(__dirname, "src")
+                ]
             }
         ]
     },
