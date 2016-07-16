@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import CheckList from './CheckList'
+import marked from 'marked';
 
+/**
+ * 카드 컴퍼넌트
+ */
 class Card extends Component {
     constructor() {
         super(...arguments);
@@ -9,6 +13,9 @@ class Card extends Component {
         };
     }
 
+    /**
+     * 상세 토글
+     */
     toggleDetails() {
         this.setState({showDetails: !this.state.showDetails});
     }
@@ -18,7 +25,7 @@ class Card extends Component {
         if (this.state.showDetails) {
             cardDetails = (
                 <div className="card__details">
-                    {this.props.description}
+                    {marked(this.props.description)}
                     <CheckList cardId={this.props.id} tasks={this.props.tasks}/>
                 </div>
             );
