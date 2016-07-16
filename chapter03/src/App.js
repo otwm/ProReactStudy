@@ -10,7 +10,11 @@ class Greeter extends Component {
 }
 
 Greeter.propTypes = {
-    salutation: PropTypes.string.isRequired
+    salutation: PropTypes.string
+};
+
+Greeter.defaultProps = {
+    salutation: "Hello World"
 };
 
 // render(<Greeter salutation="Hello World"/>, document.getElementById('root'));
