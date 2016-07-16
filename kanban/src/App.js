@@ -26,7 +26,7 @@ let cardsList = [
     {
         id: 2,
         title: "책 읽기",
-        description: "오베를 읽자.  아 요새 넘 시간이 없네...",
+        description: "오베를 읽자.      아 요새 넘 시간이 없네...",//어쩐지 이건 되지 않는 군.
         status: "todo",
         color: '#3A7E28',
         tasks: [],
