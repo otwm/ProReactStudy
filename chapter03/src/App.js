@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {render} from 'react-dom';
 
 class Greeter extends Component {
@@ -9,4 +9,9 @@ class Greeter extends Component {
     }
 }
 
-render(<Greeter salutation="Hello World"/>, document.getElementById('root'));
+Greeter.propTypes = {
+    salutation: PropTypes.string.isRequired
+};
+
+// render(<Greeter salutation="Hello World"/>, document.getElementById('root'));
+render(<Greeter/>, document.getElementById('root'));
