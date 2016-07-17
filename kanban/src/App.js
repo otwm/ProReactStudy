@@ -7,8 +7,9 @@ let cardsList = [
     {
         id: 1,
         title: "react study",
-        description: "react study",
+        description: "react **study**",
         status: "in-progress",
+        color:"#BD8D31",
         tasks: [
             {
                 id: 1,
@@ -25,7 +26,8 @@ let cardsList = [
     {
         id: 2,
         title: "책 읽기",
-        description: "오베를 읽자.",
+        description: "* 오베를 읽자.",
+        color:"#BD8D31",
         status: "todo",
         tasks: [],
     },
@@ -33,13 +35,15 @@ let cardsList = [
         id: 3,
         title: "짐 싸놓기",
         description: "언넝. 후딱",
+        color:"#BD8D31",
         status: "todo",
         tasks: []
     },
     {
         id: 4,
         title: "민방위 일자 알아보기",
-        description: "정말 귀찮쿤!",
+        description: "**정말** 귀찮쿤!",
+        color:"#3A7E28",
         status: "todo",
         tasks: []
     }
