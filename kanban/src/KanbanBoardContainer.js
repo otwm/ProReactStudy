@@ -42,7 +42,7 @@ class KanbanBoardContainer extends Component {
     render() {
         return (
             <KanbanBoard cards={this.state.cards}
-                         taskCallBacks={{
+                         taskCallbacks={{
                              toggle: this.toggleTask.bind(this),
                              delete: this.deleteTask.bind(this),
                              add: this.addTask.bind(this)
