@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "marked": "^0.3.5",
-    "react": "^15.1.0"
+    "react": "^15.1.0",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",
