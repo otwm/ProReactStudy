@@ -27,8 +27,27 @@ class KanbanBoardContainer extends Component {
             })
     }
 
+    addTask(cardId, taskName) {
+
+    }
+
+    deleteTask(cardId, taskId, taskIndex) {
+
+    }
+
+    toggleTask(carId, taskId, taskIndex) {
+
+    }
+
     render() {
-        return <KanbanBoard cards={this.state.cards}/>
+        return (
+            <KanbanBoard cards={this.state.cards}
+                         taskCallBacks={{
+                             toggle: this.toggleTask.bind(this),
+                             delete: this.deleteTask.bind(this),
+                             add: this.addTask.bind(this)
+                         }}/>
+        )
     }
 }
 
