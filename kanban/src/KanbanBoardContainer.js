@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
 import KanbanBoard from './KanbanBoard';
+import 'whatwg-fetch';
+
+const API_URL = 'http://kanbanapi.pro-react.com';
+const API_HEADERS = {
+    'Content-Type': 'application-json',
+    Authorization: 'kdo'
+};
 
 class KanbanBoardContainer extends Component {
     constructor() {
@@ -9,9 +16,20 @@ class KanbanBoardContainer extends Component {
         };
     }
 
+    componentDidMount() {
+        fetch(API_URL + '/cards', {header: API_HEADERS})
+            .then((response) => response.json())
+            .then((responseData) => {
+                this.setState({cards: responseData})
+            })
+            .catch((error) => {
+                console.log('error !!! ', error)
+            })
+    }
+
     render() {
-        return <KanbanBoard cards={cards}/>
+        return <KanbanBoard cards={this.state.cards}/>
     }
 }
 
-export default KanbanBoard;
+export default KanbanBoardContainer;
