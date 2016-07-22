@@ -1,13 +1,22 @@
 import React, {Component} from 'react';
 import KanbanBoard from './KanbanBoard';
+import 'babel-polyfill';
+import update from 'react-addons-update'
 import 'whatwg-fetch';
 
+/**
+ * 칸반 API 정보
+ * @type {string}
+ */
 const API_URL = 'http://kanbanapi.pro-react.com';
 const API_HEADERS = {
-    'Content-Type': 'application-json',
-    Authorization: 'kdo'
+    'Content-Type': 'application/json',
+    Authorization: 'any-string-you-like'
 };
 
+/**
+ * 칸반 보드 컨테이너
+ */
 class KanbanBoardContainer extends Component {
     constructor() {
         super(...arguments);
@@ -16,6 +25,9 @@ class KanbanBoardContainer extends Component {
         };
     }
 
+    /**
+     * 컴퍼넌트에 읽어온 카드 데이터 삽입
+     */
     componentDidMount() {
         fetch(API_URL + '/cards', {header: API_HEADERS})
             .then((response) => response.json())
@@ -24,19 +36,79 @@ class KanbanBoardContainer extends Component {
             })
             .catch((error) => {
                 console.log('error !!! ', error)
-            })
+            });
     }
 
+    /**
+     * 태스크 추가
+     * @param cardId
+     * @param taskName
+     */
     addTask(cardId, taskName) {
-        console.log('addTask');
+        let cardIndex = this.state.cards.findIndex((card) => card.id == cardId);
+        let newTask = {id: Date.now(), name: taskName, done: false};
+        let nextState = update(this.state.cards, {
+            [cardIndex]: {
+                tasks: {$push: [newTask]}
+            }
+        });
+
+        this.setState({cards: nextState});
+        fetch(`${API_URL}/cards/${cardId}/tasks`, {
+            method: 'post',
+            headers: API_HEADERS,
+            body: JSON.stringify(newTask)
+        });
     }
 
+    /**
+     * 태스크 삭제
+     * @param cardId
+     * @param taskId
+     * @param taskIndex
+     */
     deleteTask(cardId, taskId, taskIndex) {
-        console.log('deleteTask');
+        let cardIndex = this.state.cards.findIndex((card) => card.id == cardId);
+
+        let nextState = update(this.state.cards, {
+            [cardIndex]: {
+                tasks: {$splice: [[taskIndex, 1]]}
+            }
+        });
+
+        this.setState({cards: nextState})
+
+        fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
+            method: 'delete',
+            headers: API_HEADERS
+        });
     }
 
-    toggleTask(carId, taskId, taskIndex) {
-        console.log('toggleTask');
+    toggleTask(cardId, taskId, taskIndex) {
+        let cardIndex = this.state.cards.findIndex((card) => card.id == cardId);
+        let newDoneValue;
+        let nextState = update(this.state.cards, {
+            [cardIndex]: {
+                tasks: {
+                    [taskIndex]: {
+                        done: {
+                            $apply: (done) => {
+                                newDoneValue = !done
+                                return newDoneValue;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        this.setState({cards: nextState});
+
+        fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
+            method: 'put',
+            headers: API_HEADERS,
+            body: JSON.stringify({done: newDoneValue})
+        });
     }
 
     render() {
