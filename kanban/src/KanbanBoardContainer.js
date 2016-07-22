@@ -45,6 +45,7 @@ class KanbanBoardContainer extends Component {
      * @param taskName
      */
     addTask(cardId, taskName) {
+        let prevState = this.state;
         let cardIndex = this.state.cards.findIndex((card) => card.id == cardId);
         let newTask = {id: Date.now(), name: taskName, done: false};
         let nextState = update(this.state.cards, {
@@ -58,6 +59,17 @@ class KanbanBoardContainer extends Component {
             method: 'post',
             headers: API_HEADERS,
             body: JSON.stringify(newTask)
+        }).then((response)=> {
+            if (response.ok) {
+                return response.json()
+            } else {
+                throw new Error('server error')
+            }
+        }).then((responseData) => {
+            newTask.id = responseData.id;
+            this.setState({cards: nextState});
+        }).catch((error) => {
+            this.setState(prevState);
         });
     }
 
@@ -70,6 +82,7 @@ class KanbanBoardContainer extends Component {
     deleteTask(cardId, taskId, taskIndex) {
         let cardIndex = this.state.cards.findIndex((card) => card.id == cardId);
 
+        let prevState = this.state;
         let nextState = update(this.state.cards, {
             [cardIndex]: {
                 tasks: {$splice: [[taskIndex, 1]]}
@@ -81,10 +94,18 @@ class KanbanBoardContainer extends Component {
         fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
             method: 'delete',
             headers: API_HEADERS
+        }).then((response)=> {
+            if (!response.ok) {
+                throw new Error('server error');
+            }
+        }).catch((error)=> {
+            console.error('error :', error);
+            this.setState(prevState);
         });
     }
 
     toggleTask(cardId, taskId, taskIndex) {
+        let prevState = this.state;
         let cardIndex = this.state.cards.findIndex((card) => card.id == cardId);
         let newDoneValue;
         let nextState = update(this.state.cards, {
@@ -108,6 +129,13 @@ class KanbanBoardContainer extends Component {
             method: 'put',
             headers: API_HEADERS,
             body: JSON.stringify({done: newDoneValue})
+        }).then((response)=> {
+            if (!response.ok) {
+                throw new Error('server error');
+            }
+        }).catch((error)=> {
+            console.error('error :', error);
+            this.setState(prevState);
         });
     }
 
