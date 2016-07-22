@@ -1,5 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 
+/**
+ * 체크 리스트
+ */
 class CheckList extends Component {
 
     checkInputKeyPress(event) {
