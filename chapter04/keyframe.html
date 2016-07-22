@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>pulsing heart</title>
+    <style media="screen">
+        @keyframes pulsing-heart {
+            0% {
+                transform: none;
+            }
+            50% {
+                transform: scale(1.4);
+            }
+            100% {
+                transform: none;
+            }
+        }
+
+        body {
+            text-align: center;
+        }
+
+        .heart {
+            font-size: 10rem;
+            color: #ff0000;
+        }
+
+        .heart:hover {
+            animation: pulsing-heart .5s infinite;
+            transform-origin: center;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="heart">&hearts;</div>
+</div>
+</body>
+</html>
