@@ -1,47 +1,40 @@
-input {
-    padding: 5px;
-    width: 120px;
-    margin-top: 10px;
+body {
+    font: 16px/1 sans-serif;
 }
 
-.item {
-    background-color: #efefef;
+#root {
+    height: 100%;
+}
+
+h1 {
+    font-weight: 200;
+    color: #3b414c;
+    font-size: 20px;
+}
+
+.app {
+    white-space: nowrap;
+    height: 100%;
+}
+
+.snack {
+    display: inline-block;
+    padding: .5em;
+    margin: 0 1em 1em 0.25em;
+    border: 4px solid #d9d9d9;
+    background: #f7f7f7;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 5rem;
     cursor: pointer;
-    display: block;
-    margin-bottom: 1px;
-    padding: 8px 12px;
-    width: 120px;
+    line-height: 5rem;
+    text-align: center;
+    color: #333;
 }
 
-.example-enter {
-    opacity: 0;
-    transform: translateX(-250px);
-}
-
-.example-enter.example-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 0.3s;
-}
-
-.example-leave {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.example-leave.example-leave-active {
-    opacity: 0;
-    transform: translateX(250px);
-    transition: 0.3s;
-}
-
-.example-appear{
-    opacity: 0;
-    transform: translateX(-250px);
-}
-
-.example-appear.example-appear-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 0.5s;
+.shopping-cart {
+    border: 5px dashed #d9d9d9;
+    border-radius: 10px;
+    padding: 5rem 2rem;
+    text-align: center;
 }
