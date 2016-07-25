@@ -1,0 +1,14 @@
+input {
+    padding: 5px;
+    width: 120px;
+    margin-top: 10px;
+}
+
+.item {
+    background-color: #efefef;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 1px;
+    padding: 8px 12px;
+    width: 120px;
+}
