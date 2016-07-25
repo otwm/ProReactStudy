@@ -17,15 +17,34 @@ const ShoppingCartSpec = {
 
 class ShoppingCart extends Component {
     render() {
+        const {canDrop, isOver, connectDropTarget} = this.props;
+        const isActive = canDrop && isOver;
+
+        let backgroundColor = '#FFFFFF';
+        if (isActive) {
+            backgroundColor = '#F7F7BD';
+        } else if (canDrop) {
+            backgroundColor = '#F7F7F7';
+        }
 
         const style = {
-            backgroundColor: '#FFFFFF'
+            backgroundColor: backgroundColor
         };
 
-        return (
+        return connectDropTarget(
             <div className="shopping-cart" style={style}>
-                Drag here to order!
+                {isActive ?
+                    'Hummmm, snack!' : 'Drag here to order!'
+                }
             </div>
         );
     }
 }
+
+ShoppingCart.propTypes = {
+    connectDropTarget: PropTypes.func.isRequired,
+    isOver: PropTypes.func.isRequired,
+    canDrop: PropTypes.bool.isRequired
+};
+
+export default DragTarget('snack', ShoppingCartSpec, collect)(ShoppingCart);
