@@ -34,3 +34,14 @@ input {
     transform: translateX(250px);
     transition: 0.3s;
 }
+
+.example-appear{
+    opacity: 0;
+    transform: translateX(-250px);
+}
+
+.example-appear.example-appear-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 0.5s;
+}
