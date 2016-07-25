@@ -26,22 +26,27 @@ let collect = (connect, monitor)=> {
 
 class Snack extends Component {
     render() {
-        const {name} = this.props;
+        const {name, isDragging, connectDragSource} = this.props;
+        const opacity = isDragging ? 0.4 : 1;
 
         const style = {
-            opacity: 1
+            opacity: opacity
         };
 
         return (
-            <div className="snack" style={style}>
-                {name}
-            </div>
+            connectDragSource(
+                <div className="snack" style={style}>
+                    {name}
+                </div>
+            )
         )
     }
 }
 
 Snack.propTypes = {
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    isDragging: PropTypes.bool.isRequired,
+    connectDragSource: PropTypes.func.isRequired
 };
 
 export default DragSource('snack', snackSpec, collect)(Snack);
