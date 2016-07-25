@@ -15,14 +15,30 @@
             background-color: #ddd;
         }
 
-        .sidebar{
+        .sidebar {
+            background-color: #eee;
+            box-shadow: 1px 0 3px #888888;
+            position: absolute;
+            width: 15rem;
+            height: 100%;
+        }
 
+        .sidebar-transition {
+            opacity: 0;
+            left: -15rem;
+        }
+
+        .sidebar-transition-active {
+            opacity: 1;
+            left: 0;
+            transition: 0.5s;
         }
     </style>
 </head>
 <body>
 <header>
-    <button>&#9776;</button>
+    <button onclick="document.querySelector('.sidebar').classList.add('sidebar-transition-active')"
+    >&#9776;</button>
 </header>
 <div>
     <ul class="sidebar sidebar-transition">
