@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react';
-import {DragTarget} from 'react-dnd';
+import {DropTarget} from 'react-dnd';
 
 let collect = (connect, monitor)=> {
     return {
@@ -47,4 +47,4 @@ ShoppingCart.propTypes = {
     canDrop: PropTypes.bool.isRequired
 };
 
-export default DragTarget('snack', ShoppingCartSpec, collect)(ShoppingCart);
+export default DropTarget('snack', ShoppingCartSpec, collect)(ShoppingCart);
