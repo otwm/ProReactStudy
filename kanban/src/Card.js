@@ -1,8 +1,17 @@
 import React, {Component, PropTypes} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import CheckList from './CheckList'
 import marked from 'marked';
+import CheckList from './CheckList'
+import {DragSource} from 'react-dnd';
+import constants from './constants';
 
+/**
+ * 커스텀 propType
+ * @param props
+ * @param propName
+ * @param componentName
+ * @returns {Error}
+ */
 let titlePropType = (props, propName, componentName) => {
     if (props[propName]) {
         let value = props[propName];
@@ -11,6 +20,20 @@ let titlePropType = (props, propName, componentName) => {
                 `${propName} in ${componentName} is longer than 80 characters`
             );
         }
+    }
+};
+
+let cardDragSpec = {
+    begin(props){
+        return {
+            id: props.id
+        }
+    }
+};
+
+let collectDrag = (connect, monitor) => {
+    return {
+        connectDragSource: connect.dragSource()
     }
 };
 
@@ -33,6 +56,7 @@ class Card extends Component {
     }
 
     render() {
+        const {connectDragSource} = this.props;
         let cardDetails;
         if (this.state.showDetails) {
             cardDetails = (
@@ -57,7 +81,7 @@ class Card extends Component {
             backgroundColor: this.props.color
         };
 
-        return (
+        return connectDragSource(
             <div className="card">
                 <div style={sideColor}/>
                 <div
@@ -85,7 +109,9 @@ Card.propTypes = {
     description: PropTypes.string,
     color: PropTypes.string,
     tasks: PropTypes.arrayOf(PropTypes.object),
-    taskCallbacks: PropTypes.object
+    taskCallbacks: PropTypes.object,
+    cardCallbacks: PropTypes.object,
+    connectDragSource: PropTypes.func.isRequired
 };
 
-export default Card;
+export default DragSource(constants.CARD, cardDragSpec, collectDrag)(Card);
