@@ -13,7 +13,12 @@ import 'whatwg-fetch';
 const API_URL = 'http://kanbanapi.pro-react.com';
 const API_HEADERS = {
     'Content-Type': 'application/json',
-    Authorization: 'any-string-you-like'
+    /*
+     * Change the Authorization to any string you like. It can be your pet's name,
+     * your middle name, your favorite animal, your superpower of choice...
+     * An unique authorization will allow you to have your own environment for cards and tasks
+     */
+    Authorization: 'CHANGE THIS VALUE'
 };
 
 /**
@@ -173,6 +178,33 @@ class KanbanBoardContainer extends Component {
         }
     }
 
+    persistCardDrag(cardId, status) {
+        let cardIndex = this.state.cards.findIndex((card) => card.id == cardId);
+        let card = this.state.cards[cardIndex];
+
+        fetch(`${API_URL}/cards/${cardId}`, {
+            method: 'put',
+            headers: API_HEADERS,
+            body: JSON.stringify({
+                status: card.status,
+                row_order_position: cardIndex
+            })
+        }).then((response)=> {
+            if (!response.ok) {
+                throw new Error('Server error');
+            }
+        }).catch((error)=> {
+            console.error('fetch error: ', error);
+            this.setState(update(this.state, {
+                cards: {
+                    [cardIndex]: {
+                        status: {$set: status}
+                    }
+                }
+            }));
+        });
+    }
+
     render() {
         return (
             <KanbanBoard cards={this.state.cards}
@@ -183,7 +215,8 @@ class KanbanBoardContainer extends Component {
                          }}
                          cardCallbacks={{
                              updateStatus: this.updateCardStatus,
-                             updatePosition: this.updateCardPosition
+                             updatePosition: this.updateCardPosition,
+                             persistCardDrag: this.persistCardDrag.bind(this)
                          }}/>
         )
     }

@@ -28,6 +28,9 @@ const cardDragSpec = {
         return {
             id: props.id
         }
+    },
+    endDrag(props){
+        props.cardCallbacks.persistCardDrag(props.id, props.status)
     }
 };
 
@@ -129,6 +132,6 @@ Card.propTypes = {
 };
 
 const dragHighOrderCard = DragSource(constants.CARD, cardDragSpec, collectDrag)(Card);
-const dragDropHighOrderCard = DropTarget(constants.CARD,cardDropSpec,collectDrop)(dragHighOrderCard);
+const dragDropHighOrderCard = DropTarget(constants.CARD, cardDropSpec, collectDrop)(dragHighOrderCard);
 
 export default dragDropHighOrderCard;
