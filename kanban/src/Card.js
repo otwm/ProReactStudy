@@ -24,7 +24,7 @@ let titlePropType = (props, propName, componentName) => {
 };
 
 let cardDragSpec = {
-    begin(props){
+    beginDrag(props){
         return {
             id: props.id
         }

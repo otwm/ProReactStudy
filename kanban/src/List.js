@@ -12,7 +12,7 @@ const listTargetSpec = {
 
 function collect(connect, monitor) {
     return {
-        connectDropTarget: connect.DropTarget()
+        connectDropTarget: connect.dropTarget()
     };
 }
 
