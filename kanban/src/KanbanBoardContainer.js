@@ -26,7 +26,7 @@ class KanbanBoardContainer extends Component {
             cards: [],
         };
         this.updateCardStatus = throttle(this.updateCardStatus.bind(this));
-        this.updateCardPosition = throttle(this.updateCardPosition.bind(this));
+        this.updateCardPosition = throttle(this.updateCardPosition.bind(this), 500);
     }
 
     /**
