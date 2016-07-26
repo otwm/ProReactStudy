@@ -38,7 +38,7 @@ class KanbanBoardContainer extends Component {
      * 컴퍼넌트에 읽어온 카드 데이터 삽입
      */
     componentDidMount() {
-        fetch(API_URL + '/cards', {header: API_HEADERS})
+        fetch(API_URL + '/cards', {headers: API_HEADERS})
             .then((response) => response.json())
             .then((responseData) => {
                 this.setState({cards: responseData})

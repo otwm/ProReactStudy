@@ -26,7 +26,8 @@ let titlePropType = (props, propName, componentName) => {
 const cardDragSpec = {
     beginDrag(props){
         return {
-            id: props.id
+            id: props.id,
+            status: props.status
         }
     },
     endDrag(props){
@@ -128,7 +129,7 @@ Card.propTypes = {
     taskCallbacks: PropTypes.object,
     cardCallbacks: PropTypes.object,
     connectDragSource: PropTypes.func.isRequired,
-    connectDropSource: PropTypes.func.isRequired
+    connectDropTarget: PropTypes.func.isRequired
 };
 
 const dragHighOrderCard = DragSource(constants.CARD, cardDragSpec, collectDrag)(Card);
