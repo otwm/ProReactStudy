@@ -5,6 +5,8 @@ import About from './About';
 import Home from './Home';
 import Repos from './Repos';
 
+import {Router, Route, Link} from 'react-router';
+
 class App extends Component {
     constructor() {
         super(...arguments);
@@ -44,10 +46,17 @@ class App extends Component {
                         <li><a href="#/repos">Repos</a></li>
                     </ul>
                 </menu>
-                <Child/>
+                {this.props.children}
             </div>
         );
     }
 }
 
-render(<App/>, document.getElementById('root'));
+render((
+    <Router>
+        <Route path="/" component={App}>
+            <Route path="about" component={About}/>
+            <Route path="repos" component={Repos}/>
+        </Route>
+    </Router>
+), document.getElementById('root'));
