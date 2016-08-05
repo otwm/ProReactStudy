@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 import About from './About';
 import Home from './Home';
 import Repos from './Repos';
+import RepoDetails from './RepoDetails';
 
 import {Router, Route, Link, IndexRoute} from 'react-router';
 
@@ -57,7 +58,9 @@ render((
         <Route path="/" component={App}>
             <IndexRoute component={Home}/>
             <Route path="about" component={About}/>
-            <Route path="repos" component={Repos}/>
+            <Route path="repos" component={Repos}>
+                <Route path="details/:repoName" component={RepoDetails}/>
+            </Route>
         </Route>
     </Router>
 ), document.getElementById('root'));
