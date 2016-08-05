@@ -5,7 +5,7 @@ import About from './About';
 import Home from './Home';
 import Repos from './Repos';
 
-import {Router, Route, Link} from 'react-router';
+import {Router, Route, Link, IndexRoute} from 'react-router';
 
 class App extends Component {
     constructor() {
@@ -55,6 +55,7 @@ class App extends Component {
 render((
     <Router>
         <Route path="/" component={App}>
+            <IndexRoute component={Home}/>
             <Route path="about" component={About}/>
             <Route path="repos" component={Repos}/>
         </Route>
