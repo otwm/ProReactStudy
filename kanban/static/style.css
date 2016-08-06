@@ -120,3 +120,55 @@ ul {
     overflow: hidden;
     transition: max-height .25s ease-out;
 }
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.card.big {
+    position: absolute;
+    width: 450px;
+    height: 200px;
+    margin: auto;
+    padding: 15px;
+    top: 0;
+    left: 0;
+    bottom: 100px;
+    right: 0;
+    z-index: 3;
+}
+
+.card.big input[type=text] {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card.big input[type=text]:focus, .card.big textarea:focus {
+    outline: dashed thin #999;
+    outline-offset: 2px;
+}
+
+.card.big label {
+    margin: 3px 0 7px 3px;
+    color: #a7a7a7;
+    display: inline-block;
+    width: 60px;
+}
+
+.actions {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.card.big button {
+    font-size: 14px;
+    padding: 8px;
+}
