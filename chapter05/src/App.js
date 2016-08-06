@@ -59,7 +59,7 @@ render((
             <IndexRoute component={Home}/>
             <Route path="about" component={About} title="about us"/>
             <Route path="repos" component={Repos}>
-                <Route path="details/:repoName" component={RepoDetails}/>
+                <Route path="/repo/:repoName" component={RepoDetails}/>
             </Route>
         </Route>
     </Router>
