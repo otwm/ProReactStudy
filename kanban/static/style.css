@@ -172,3 +172,20 @@ ul {
     font-size: 14px;
     padding: 8px;
 }
+
+.float-button {
+    position: absolute;
+    height: 56px;
+    width: 56px;
+    z-index: 2;
+    right: 20px;
+    bottom: 20px;
+    background: #D43A2F;
+    color: white;
+    border-radius: 100%;
+    font-size: 34px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
