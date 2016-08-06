@@ -6,6 +6,7 @@ import Home from './Home';
 import Repos from './Repos';
 import RepoDetails from './RepoDetails';
 import ServerError from './ServerError';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import {Router, Route, Link, IndexRoute} from 'react-router';
 
@@ -55,7 +56,7 @@ class App extends Component {
 }
 
 render((
-    <Router>
+    <Router history={createBrowserHistory()}>
         <Route path="/" component={App}>
             <IndexRoute component={Home}/>
             <Route path="about" component={About} title="about us"/>
