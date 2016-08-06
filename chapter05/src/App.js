@@ -57,7 +57,7 @@ render((
     <Router>
         <Route path="/" component={App}>
             <IndexRoute component={Home}/>
-            <Route path="about" component={About}/>
+            <Route path="about" component={About} title="about us"/>
             <Route path="repos" component={Repos}>
                 <Route path="details/:repoName" component={RepoDetails}/>
             </Route>
