@@ -25,13 +25,18 @@ class Repos extends Component {
                 <Link to={"/repos/details/" + repo.name }>{repo.name}</Link>
             </li>
         ));
+
+        let child = this.props.children && React.cloneElement(
+                this.props.children, {repositories: this.state.repositories}
+            );
+
         return (
             <div>
                 <h1>Github Repos</h1>
                 <ul>
                     {repos}
                 </ul>
-                {this.props.children}
+                {child}
             </div>
         );
     }
