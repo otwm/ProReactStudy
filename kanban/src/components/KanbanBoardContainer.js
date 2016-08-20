@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import update from 'react-addons-update';
-import {throttle} from './utils';
+import {throttle} from '../utils';
 import KanbanBoard from './KanbanBoard';
 //폴리필
 import 'babel-polyfill';
