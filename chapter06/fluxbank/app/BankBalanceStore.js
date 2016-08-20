@@ -1,28 +1,34 @@
 import AppDispatcher from './AppDispatcher';
 import bankConstants from './constants';
-import {ReduceStore} from 'flux/utils';
+import {EventEmitter} from 'fbemitter';
 
-class BankBalanceStore extends ReduceStore {
-  getInitialState() {
-    return 0;
-  }
+const CHANGE_EVENT = 'change';
+let __emitter = new EventEmitter();
+let balance = 0;
+let BankBalanceStore = {
+    getState(){
+        return balance;
+    },
+    addListner: (callback) => {
+        return __emitter.addListener(CHANGE_EVENT, callback);
+    },
+};
 
-  reduce(state, action){
+BankBalanceStore.dispatchToken = AppDispatcher.register((action) => {
     switch (action.type) {
-
-      case bankConstants.CREATED_ACCOUNT:
-        return 0;
-
-      case bankConstants.DEPOSITED_INTO_ACCOUNT:
-        return state + action.ammount;
-
-      case bankConstants.WITHDREW_FROM_ACCOUNT:
-        return state - action.ammount;
-
-      default:
-        return state;
+        case bankConstants.CREATED_ACCOUNT:
+            balance = 0;
+            __emitter.emit(CHANGE_EVENT);
+            break;
+        case bankConstants.DEPOSITED_INTO_ACCOUNT:
+            balance = balance + action.amount;
+            __emitter.emit(CHANGE_EVENT);
+            break;
+        case  bankConstants.WITHDREW_FROM_ACCOUNT:
+            balance = balance - action.amount;
+            __emitter.emit(CHANGE_EVENT);
+            break;
     }
-  }
-}
+});
 
-export default new BankBalanceStore(AppDispatcher);
+export default BankBalanceStore;

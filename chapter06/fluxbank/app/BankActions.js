@@ -9,27 +9,27 @@ let BankActions = {
   createAccount() {
     AppDispatcher.dispatch({
       type: bankConstants.CREATED_ACCOUNT,
-      ammount: 0
+      amount: 0
     });
   },
 
   /**
-   * @param  {number} ammount to whithdraw
+   * @param  {number} amount to whithdraw
    */
-  depositIntoAccount(ammount) {
+  depositIntoAccount(amount) {
     AppDispatcher.dispatch({
       type: bankConstants.DEPOSITED_INTO_ACCOUNT,
-      ammount: ammount
+      amount: amount
     });
   },
 
   /**
-   * @param  {number} ammount to whithdraw
+   * @param  {number} amount to whithdraw
    */
-  withdrawFromAccount(ammount) {
+  withdrawFromAccount(amount) {
     AppDispatcher.dispatch({
       type: bankConstants.WITHDREW_FROM_ACCOUNT,
-      ammount: ammount
+      amount: amount
     });
   }
 
