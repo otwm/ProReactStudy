@@ -45,7 +45,7 @@ class BankRewardsStore extends ReduceStore {
                 return '금수저';
             }
         }
-        return state;// 이거 위치가 좀 이상한데??
+        return state;
     }
 }
 
