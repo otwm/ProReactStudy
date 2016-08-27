@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {Container} from 'flux/utils'
 import BankBalanceStore from './BankBalanceStore';
+import BankRewardsStore from './BankRewardsStore';
 import BankActions from './BankActions';
 
 /**
@@ -41,6 +42,7 @@ class App extends Component {
             <div>
                 <header>Flux bank</header>
                 <h1>금액 ${(this.state.balance).toFixed(2)}</h1>
+                <h2>너는 {this.state.tier}</h2>
                 <div className="atm">
                     <input type="text" placeholder="금액" ref="amount"/>
                     <br/>
@@ -55,12 +57,15 @@ class App extends Component {
 /**
  * 스토어 등록
  */
-App.getStores = () => ([BankBalanceStore]);
+App.getStores = () => ([BankBalanceStore, BankRewardsStore]);
 /**
  * 상태 가져오기
  * @param prevState
  */
-App.calculateState = (prevState) => ({balance: BankBalanceStore.getState()});
+App.calculateState = (prevState) => ({
+    balance: BankBalanceStore.getState(),
+    tier: BankRewardsStore.getState()
+});
 /**
  * 컨테이너 랩핑
  * @type {App}
