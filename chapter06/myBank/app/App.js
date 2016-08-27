@@ -3,7 +3,14 @@ import {render} from 'react-dom';
 import BankBalanceStore from './BankBalanceStore';
 import BankActions from './BankActions';
 
+/**
+ * app 컴포넌트
+ */
 class App extends Component {
+    /**
+     * 생성자
+     * 초기 계정을 설정 한다.
+     */
     constructor() {
         super(...arguments);
         BankActions.createAccount();
@@ -12,23 +19,47 @@ class App extends Component {
         }
     }
 
+    /**
+     * 리스너 등록
+     * 이제부터 컴퍼넌트는 스토어의 변화를 감지 하게 된다.
+     */
     componentDidMount() {
-        this.storeSubscription = BankBalanceStore.addListener(data => this.handleStoreChange(data));
+        console.log('componentDidMount');
+        this.storeSubscription = BankBalanceStore.addListener(data => {
+            console.log('data : ' + data);// data는 현재 undefined
+            this.handleStoreChange(data);
+        });
     }
 
+    /**
+     * 스토어를 해체 한다.
+     * 토큰을 이용하여 해체 한다.
+     */
     componentWillUnmount() {
         this.storeSubscription.remove();
     }
 
+    /**
+     * 스토어의 상태 값을 컴퍼넌트의 상태로 변경
+     */
     handleStoreChange() {
+        console.log('test');
         this.setState({balance: BankBalanceStore.getState()});
     }
 
+    /**
+     * 입금.
+     * 초기화
+     */
     deposit() {
         BankActions.depositIntoAccount(Number(this.refs.amount.value));
-        this.refs.amount.value = '';
+        this.refs.amount.value = '';//refs 값을 이용하여 초기화 한다!
     }
 
+    /**
+     * 출금.
+     * 초기화
+     */
     withdraw() {
         BankActions.withdrawFromAccount(Number(this.refs.amount.value));
         this.refs.amount.value = '';
@@ -50,4 +81,4 @@ class App extends Component {
     }
 }
 
-render(<App/>,document.getElementById("root"));
+render(<App/>, document.getElementById("root"));
