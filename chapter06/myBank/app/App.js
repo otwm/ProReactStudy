@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import {Container} from 'flux/utils'
 import BankBalanceStore from './BankBalanceStore';
 import BankActions from './BankActions';
 
@@ -10,41 +11,11 @@ class App extends Component {
     /**
      * 생성자
      * 초기 계정을 설정 한다.
+     * 별도의 상태 설정은 없다.
      */
     constructor() {
         super(...arguments);
         BankActions.createAccount();
-        this.state = {
-            balance: BankBalanceStore.getState()
-        }
-    }
-
-    /**
-     * 리스너 등록
-     * 이제부터 컴퍼넌트는 스토어의 변화를 감지 하게 된다.
-     */
-    componentDidMount() {
-        console.log('componentDidMount');
-        this.storeSubscription = BankBalanceStore.addListener(data => {
-            console.log('data : ' + data);// data는 현재 undefined
-            this.handleStoreChange(data);
-        });
-    }
-
-    /**
-     * 스토어를 해체 한다.
-     * 토큰을 이용하여 해체 한다.
-     */
-    componentWillUnmount() {
-        this.storeSubscription.remove();
-    }
-
-    /**
-     * 스토어의 상태 값을 컴퍼넌트의 상태로 변경
-     */
-    handleStoreChange() {
-        console.log('test');
-        this.setState({balance: BankBalanceStore.getState()});
     }
 
     /**
@@ -81,4 +52,19 @@ class App extends Component {
     }
 }
 
-render(<App/>, document.getElementById("root"));
+/**
+ * 스토어 등록
+ */
+App.getStores = () => ([BankBalanceStore]);
+/**
+ * 상태 가져오기
+ * @param prevState
+ */
+App.calculateState = (prevState) => ({balance: BankBalanceStore.getState()});
+/**
+ * 컨테이너 랩핑
+ * @type {App}
+ */
+const AppContainer = Container.create(App);
+
+render(<AppContainer/>, document.getElementById("root"));
