@@ -1,48 +1,38 @@
 import AppDispatcher from './AppDispatcher';
-import {Store} from 'flux/utils'
+import {ReduceStore} from 'flux/utils'
 import bankConstants from './constants';
-
-/**
- * 계좌 금액
- * @type {number}
- */
-let balance = 0;
 
 /**
  * 스토어
  */
-class BankBalanceStore extends Store {
+class BankBalanceStore extends ReduceStore {
     /**
-     * 상태 값
+     * 초기값
      * @returns {number}
      */
-    getState() {
-        return balance;
+    getInitialState() {
+        return 0;
     }
 
     /**
-     * 디스패치
-     * @param action
-     * @private
+     * 리듀스
+     * @param state 상태
+     * @param action 액션
+     * @returns {*}
      */
-    __onDispatch(action) {
-        console.log('__onDispatch');
+    reduce(state, action) {
         switch (action.type) {
             case bankConstants.CREATED_ACCOUNT:
-                balance = 0;
-                //사실 현 소스 상 이 부분의 이밋은 의미가 없다.
-                this.__emitChange();
-                break;
+                return 0;
             case  bankConstants.DEPOSITED_INTO_ACCOUNT:
-                balance = balance + action.amount;
-                this.__emitChange();
-                break;
+                return state + action.amount;
             case bankConstants.WITHDREW_FROM_ACCOUNT:
-                balance = balance - action.amount;
-                this.__emitChange();
-                break;
+                return state - action.amount;
+            default :
+                return state;
         }
     }
+
 }
 
 export default new BankBalanceStore(AppDispatcher);
