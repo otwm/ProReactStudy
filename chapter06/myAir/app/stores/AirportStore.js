@@ -3,7 +3,7 @@ import constants from '../constants';
 import {ReduceStore} from 'flux/utils';
 
 class AirportStore extends ReduceStore {
-    getInitState() {
+    getInitialState() {
         return [];
     }
 
