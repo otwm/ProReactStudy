@@ -34,3 +34,5 @@ let BankActions = {
         })
     }
 }
+
+export default BankActions;

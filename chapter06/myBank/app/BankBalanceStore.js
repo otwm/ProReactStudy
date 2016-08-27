@@ -17,11 +17,11 @@ let __emitter = new EventEmitter();
 let balance = 0;
 
 let BankBalanceStore = {
-    getInitialState(){
+    getState(){
         return balance;
     },
-    addListner: (callback) => {
-        return __emitter.addListner(CHANGE_EVENT, callback);
+    addListener: (callback) => {
+        return __emitter.addListener(CHANGE_EVENT, callback);
     }
 };
 
@@ -36,7 +36,7 @@ BankBalanceStore.dispatchToken = AppDispatcher.register((action) => {
             __emitter.emit(CHANGE_EVENT);
             break;
         case bankConstants.WITHDREW_FROM_ACCOUNT:
-            balance = balance + action.amount;
+            balance = balance - action.amount;
             __emitter.emit(CHANGE_EVENT);
             break;
     }
