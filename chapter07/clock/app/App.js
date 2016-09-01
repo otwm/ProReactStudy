@@ -40,11 +40,8 @@ class App extends Component {
 
 Perf.start();
 render(<App />, document.getElementById("root"));
-Perf.stop();
-Perf.printInclusive();
-Perf.printWasted();
 
-// setTimeout(()=>{
-//   Perf.stop();
-//   Perf.printWasted();
-// },2000)
+setTimeout(()=>{
+  Perf.stop();
+  Perf.printWasted();
+},2000)
