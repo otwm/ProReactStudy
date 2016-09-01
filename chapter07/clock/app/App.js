@@ -38,10 +38,12 @@ class App extends Component {
   }
 }
 
-Perf.start();
+// Perf.start();
 render(<App />, document.getElementById("root"));
 
-setTimeout(()=>{
-  Perf.stop();
-  Perf.printWasted();
-},2000)
+// setTimeout(()=>{
+//   Perf.stop();
+//   Perf.printWasted();
+// },2000)
+
+window.Perf = Perf;
