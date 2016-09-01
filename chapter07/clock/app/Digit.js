@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 
 class Digit extends Component {
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return nextProps.value !== this.props.value;
-  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.value !== this.props.value;
+  }
 
   render() {
     let digitStyle={
