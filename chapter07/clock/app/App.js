@@ -26,22 +26,25 @@ class App extends Component {
   }
 
   render(){
-    let clocks=[];
-    for (var i = 0; i < 200; i++) {
-      clocks.push(<Clock hours={this.state.hours} minutes={this.state.minutes} seconds={this.state.seconds} tenths={this.state.tenths} />)
-    }
-
     return (
       <div>
-        {clocks}
+        <Clock hours={this.state.hours}
+               minutes={this.state.minutes}
+               seconds={this.state.seconds}
+               tenths={this.state.tenths}
+        />
       </div>
     );
   }
 }
 
-Perf.start()
+Perf.start();
 render(<App />, document.getElementById("root"));
-setTimeout(()=>{
-  Perf.stop();
-  Perf.printWasted();
-},2000)
+Perf.stop();
+Perf.printInclusive();
+Perf.printWasted();
+
+// setTimeout(()=>{
+//   Perf.stop();
+//   Perf.printWasted();
+// },2000)
