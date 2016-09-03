@@ -8,7 +8,7 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', './');
-app.use(express.static(__dirname + './public'));
+app.use(express.static(__dirname + '/public'));
 
 const contacts = JSON.parse(fs.readFileSync(__dirname + '/public/contacts.json', 'utf8'));
 
@@ -17,6 +17,7 @@ const ContactsAppFactory = React.createFactory(ContactsApp);
 app.get('/', (request, response) => {
     let componentInstance = ContactsAppFactory({initialData: contacts});
     response.render('index', {
+        reactInitialData: JSON.stringify(contacts),
         content: renderToString(componentInstance)
     });
 });
