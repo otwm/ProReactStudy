@@ -2,8 +2,14 @@ import express from 'express';
 
 const app = express();
 
+app.set('view engine','ejs');
+
+app.use(express.static(__dirname + '/public'));
+
 app.get('/',(request, response) => {
-    response.send('<html><body><p>Hellow World!</p></body></html>');
+    response.render('index',{
+        message:'Hello World'
+    });
 });
 
 app.listen(3000, () =>{
