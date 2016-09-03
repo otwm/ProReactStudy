@@ -2,6 +2,8 @@ import fs from "fs";
 import express from "express";
 import React from "react";
 import {renderToString} from "react-dom/server";
+import {match} from "react-router";
+import routes from "./app/routes";
 import ContactsApp from "./app/components/ContactsApp";
 
 const app = express();
@@ -14,11 +16,21 @@ const contacts = JSON.parse(fs.readFileSync(__dirname + '/public/contacts.json',
 
 const ContactsAppFactory = React.createFactory(ContactsApp);
 
-app.get('/', (request, response) => {
-    let componentInstance = ContactsAppFactory({initialData: contacts});
-    response.render('index', {
-        reactInitialData: JSON.stringify(contacts),
-        content: renderToString(componentInstance)
+let renderRoute = (request, response) => {
+
+};
+
+app.get('*', (request, response) => {
+    match({routes, location: request.url}, (error, redirectLocation, renderProps) => {
+        if (error) {
+            response.status(500).send(error.message);
+        } else if (redirectLocation) {
+            response.redirect(302, redirectLocation.pathname + redirectLocation.search);
+        } else if (redirectLocation) {
+            renderRoute(request, response);
+        } else {
+            response.status(404).send('Not found');
+        }
     });
 });
 
