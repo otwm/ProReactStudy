@@ -1,9 +1,11 @@
+var webpack = require('webpack');
+
 module.exports = {
     entry: [
         './browser.js'
     ],
     output: {
-        'path': './public',
+        path: './public',
         filename: "bundle.js"
     },
     module: {
