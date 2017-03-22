@@ -5,6 +5,7 @@ import { createHistory } from 'history';
 import routes from './app/routes';
 
 let handleCreateElement = (Component, props) => {
+  console.log('test');
   if(Component.hasOwnProperty('requestInitialData')){
     let initialData = document.getElementById('initial-data').textContent;
     if(initialData.length>0){
