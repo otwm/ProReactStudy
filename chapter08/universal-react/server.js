@@ -2,7 +2,7 @@ import fs from 'fs';
 import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { match, RoutingContext } from 'react-router';
+import { match, RouterContext } from 'react-router';
 import routes from './app/routes';
 
 const app = express();
@@ -42,7 +42,7 @@ let renderRoute = (response, renderProps) => {
       response.render('index',{
         reactInitialData: JSON.stringify(data),
         content: renderToString(
-          <RoutingContext createElement={handleCreateElement} {...renderProps} />
+          <RouterContext createElement={handleCreateElement} {...renderProps} />
         )
       });
     });
@@ -51,7 +51,7 @@ let renderRoute = (response, renderProps) => {
     // Simply render the template with RoutingContext and no initialData.
     response.render('index',{
       reactInitialData: null,
-      content: renderToString(<RoutingContext {...renderProps} />)
+      content: renderToString(<RouterContext {...renderProps} />)
     });
   }
 };

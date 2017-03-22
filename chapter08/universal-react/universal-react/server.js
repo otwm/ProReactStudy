@@ -28,6 +28,7 @@ let getPropsFromRoute = ({routes}, componentProps) => {
 };
 
 let renderRoute = (response, renderProps) => {
+  console.log(`test: ${response}, ${renderProps}`)
   // Loop through renderProps object looking for 'requestInitialData'
   let routeProps = getPropsFromRoute(renderProps, ['requestInitialData']);
   if (routeProps.requestInitialData) {
@@ -47,8 +48,6 @@ let renderRoute = (response, renderProps) => {
       });
     });
   } else {
-    // No components in this route implements 'requestInitialData'.
-    // Simply render the template with RoutingContext and no initialData.
     response.render('index',{
       reactInitialData: null,
       content: renderToString(<RoutingContext {...renderProps} />)
@@ -57,7 +56,9 @@ let renderRoute = (response, renderProps) => {
 };
 
 app.get('*', (request, response) => {
+  console.log(request.url)
   match({ routes, location: request.url }, (error, redirectLocation, renderProps) => {
+    console.log(renderProps)
     if (error) {
       response.status(500).send(error.message);
     } else if (redirectLocation) {
@@ -70,6 +71,6 @@ app.get('*', (request, response) => {
   });
 });
 
-app.listen(3000, ()=>{
+app.listen(3001, ()=>{
   console.log('Express app listening on port 3000');
 });
