@@ -15,7 +15,7 @@ let handleCreateElement = (Component, props) => {
     return <Component {...props} />;
   }
 }
-
+123
 render(
   <Router history={createHistory()} createElement={handleCreateElement}>{routes}</Router>,
   document.getElementById('root')
